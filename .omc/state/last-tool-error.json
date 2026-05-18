@@ -1,7 +1,0 @@
-{
-  "tool_name": "mcp__chrome-mcp__chrome_navigate",
-  "tool_input_preview": "{\"url\":\"http://localhost:8080\"}",
-  "error": "Error calling tool: Failed to connect to MCP server",
-  "timestamp": "2026-05-18T04:01:58.180Z",
-  "retry_count": 1
-}
