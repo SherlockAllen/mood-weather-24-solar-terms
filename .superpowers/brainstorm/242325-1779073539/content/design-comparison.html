@@ -1,0 +1,158 @@
+<h2>设计优化对比：frontend-design vs ui-ux-pro-max</h2>
+<p class="subtitle">基于两个技能原则的优化版本</p>
+
+<div class="split">
+  <!-- 方案A: frontend-design优化 -->
+  <div class="mockup">
+    <div class="mockup-header">方案A: Frontend-Design 优化</div>
+    <div class="mockup-body">
+      <div style="position:relative;width:100%;height:320px;background:#1a1a18;border-radius:8px;overflow:hidden;font-family:'Noto Serif SC','Source Han Serif CN',serif;">
+
+        <!-- 水墨渐变背景 -->
+        <div style="position:absolute;inset:0;background:linear-gradient(135deg,#1a1a18 0%,#2a2a26 50%,#1a1a18 100%);">
+          <svg width="100%" height="100%" viewBox="0 0 400 320" preserveAspectRatio="none">
+            <defs>
+              <filter id="inkBleed">
+                <feGaussianBlur stdDeviation="8"/>
+              </filter>
+              <linearGradient id="mistFlow" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" style="stop-color:#4a4a46;stop-opacity:0.3"/>
+                <stop offset="50%" style="stop-color:#3a3a36;stop-opacity:0.2"/>
+                <stop offset="100%" style="stop-color:#2a2a26;stop-opacity:0.1"/>
+              </linearGradient>
+            </defs>
+            <!-- 墨迹晕染 -->
+            <ellipse cx="100" cy="80" rx="150" ry="100" fill="url(#mistFlow)" filter="url(#inkBleed)">
+              <animate attributeName="cx" dur="15s" repeatCount="indefinite" values="100;150;100"/>
+              <animate attributeName="opacity" dur="15s" repeatCount="indefinite" values="0.3;0.5;0.3"/>
+            </ellipse>
+            <ellipse cx="300" cy="200" rx="120" ry="80" fill="#3a3a36" opacity="0.2" filter="url(#inkBleed)">
+              <animate attributeName="cy" dur="12s" repeatCount="indefinite" values="200;180;200"/>
+            </ellipse>
+          </svg>
+        </div>
+
+        <!-- 装饰性竖线 -->
+        <div style="position:absolute;left:40px;top:50%;transform:translateY(-50%);width:1px;height:60%;background:linear-gradient(180deg,transparent,#4a4a46,transparent);"></div>
+
+        <!-- 中心内容 -->
+        <div style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;color:#e8e4dc;padding:0 60px;text-align:center;">
+          <div style="font-size:10px;letter-spacing:16px;color:#6a6a66;margin-bottom:24px;font-weight:300;">立 春</div>
+          <div style="font-size:42px;font-weight:200;letter-spacing:12px;margin-bottom:20px;line-height:1.3;">春风如贵客</div>
+          <div style="font-size:14px;color:#8a8a86;font-style:italic;letter-spacing:4px;">一夜东风起 · 万物竞生辉</div>
+        </div>
+
+        <!-- 右下角装饰 -->
+        <div style="position:absolute;bottom:20px;right:30px;font-size:10px;color:#4a4a46;letter-spacing:2px;">壹</div>
+
+        <!-- 切换按钮 -->
+        <div style="position:absolute;left:20px;top:50%;transform:translateY(-50%);width:36px;height:36px;display:flex;align-items:center;justify-content:center;color:#6a6a66;font-size:20px;border:1px solid rgba(106,106,102,0.3);border-radius:50%;opacity:0.6;">‹</div>
+        <div style="position:absolute;right:20px;top:50%;transform:translateY(-50%);width:36px;height:36px;display:flex;align-items:center;justify-content:center;color:#6a6a66;font-size:20px;border:1px solid rgba(106,106,102,0.3);border-radius:50%;opacity:0.6;">›</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 方案B: ui-ux-pro-max优化 -->
+  <div class="mockup">
+    <div class="mockup-header">方案B: UI/UX-Pro-Max 优化</div>
+    <div class="mockup-body">
+      <div style="position:relative;width:100%;height:320px;background:#f8f6f2;border-radius:8px;overflow:hidden;font-family:'Songti SC','SimSun',serif;">
+
+        <!-- 浅色水墨背景 -->
+        <svg style="position:absolute;inset:0;" width="100%" height="100%" viewBox="0 0 400 320" preserveAspectRatio="none">
+          <defs>
+            <filter id="softMist">
+              <feGaussianBlur stdDeviation="6"/>
+            </filter>
+          </defs>
+          <!-- 远山 -->
+          <path d="M0,240 Q100,160 200,200 Q300,120 400,180 L400,320 L0,320 Z" fill="#e0dcd6" opacity="0.7"/>
+          <path d="M0,280 Q120,220 240,260 Q340,200 400,230 L400,320 L0,320 Z" fill="#d5d0ca"/>
+          <!-- 墨迹 -->
+          <ellipse cx="80" cy="100" rx="100" ry="60" fill="#2a2a2a" opacity="0.06" filter="url(#softMist)">
+            <animate attributeName="cx" dur="12s" repeatCount="indefinite" values="80;110;80"/>
+          </ellipse>
+        </svg>
+
+        <!-- 中心内容 -->
+        <div style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;color:#2a2a2a;padding:0 40px;text-align:center;">
+          <div style="font-size:12px;letter-spacing:12px;color:#8a8a86;margin-bottom:20px;">立 春</div>
+          <div style="font-size:36px;font-weight:400;letter-spacing:8px;margin-bottom:18px;">春风如贵客</div>
+          <div style="font-size:14px;color:#6a6a6a;font-style:italic;letter-spacing:3px;">一夜东风起，万物竞生辉</div>
+        </div>
+
+        <!-- 节气描述卡片 -->
+        <div style="position:absolute;bottom:60px;left:50%;transform:translateX(-50%);background:rgba(255,255,255,0.9);padding:16px 24px;border-radius:4px;box-shadow:0 2px 12px rgba(0,0,0,0.06);max-width:320px;">
+          <div style="font-size:12px;line-height:1.8;color:#5a5a5a;letter-spacing:1px;">立春是二十四节气之首，标志着冬季结束、春季开始，万物复苏。</div>
+        </div>
+
+        <!-- 底部导航 -->
+        <div style="position:absolute;bottom:20px;left:50%;transform:translateX(-50%);display:flex;gap:8px;align-items:center;">
+          <div style="width:24px;height:24px;display:flex;align-items:center;justify-content:center;color:#6a6a6a;font-size:18px;">‹</div>
+          <div style="display:flex;gap:6px;">
+            <div style="width:6px;height:6px;border-radius:50%;background:#2a2a2a;"></div>
+            <div style="width:6px;height:6px;border-radius:50%;background:#d0ccc6;"></div>
+            <div style="width:6px;height:6px;border-radius:50%;background:#d0ccc6;"></div>
+            <div style="width:6px;height:6px;border-radius:50%;background:#d0ccc6;"></div>
+          </div>
+          <div style="width:24px;height:24px;display:flex;align-items:center;justify-content:center;color:#6a6a6a;font-size:18px;">›</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 设计原则对比 -->
+<div class="pros-cons" style="margin-top:24px;">
+  <div class="pros">
+    <h4>方案A: Frontend-Design 优化</h4>
+    <ul>
+      <li><strong>深色背景</strong> — 水墨浓墨感更强，视觉冲击力高</li>
+      <li><strong>装饰性元素</strong> — 竖线、汉字数字点缀，有文人气质</li>
+      <li><strong>极简留白</strong> — 大量负空间，内容极度聚焦</li>
+      <li><strong>字体层级</strong> — 超细字重(200)营造轻盈感</li>
+    </ul>
+    <p style="margin-top:12px;font-size:12px;color:#6a6a66;">适合：Hackathon演示 · 评委第一眼震撼</p>
+  </div>
+  <div class="cons">
+    <h4>方案B: UI/UX-Pro-Max 优化</h4>
+    <ul>
+      <li><strong>浅色背景</strong> — 清新自然，节气氛围感</li>
+      <li><strong>节气描述卡片</strong> — 内容更丰富，信息传递清晰</li>
+      <li><strong>大触摸目标</strong> — 导航按钮清晰易点击</li>
+      <li><strong>Accessibility</strong> — 更好的对比度，无障碍支持</li>
+    </ul>
+    <p style="margin-top:12px;font-size:12px;color:#6a6a66;">适合：日常使用 · 移动端体验</p>
+  </div>
+</div>
+
+<div style="margin-top:20px;padding:16px;background:#f5f3ef;border-radius:8px;">
+  <h4 style="margin-bottom:12px;">关键设计差异</h4>
+  <table style="width:100%;border-collapse:collapse;font-size:13px;color:#5a5a5a;">
+    <tr style="border-bottom:1px solid #e0dcd6;">
+      <td style="padding:8px 0;"><strong>对比维度</strong></td>
+      <td style="padding:8px 0;text-align:center;"><strong>方案A 深色</strong></td>
+      <td style="padding:8px 0;text-align:center;"><strong>方案B 浅色</strong></td>
+    </tr>
+    <tr style="border-bottom:1px solid #e0dcd6;">
+      <td style="padding:8px 0;">背景色</td>
+      <td style="padding:8px 0;text-align:center;">#1a1a18 (深墨)</td>
+      <td style="padding:8px 0;text-align:center;">#f8f6f2 (宣纸)</td>
+    </tr>
+    <tr style="border-bottom:1px solid #e0dcd6;">
+      <td style="padding:8px 0;">文字色</td>
+      <td style="padding:8px 0;text-align:center;">#e8e4dc (浅墨)</td>
+      <td style="padding:8px 0;text-align:center;">#2a2a2a (浓墨)</td>
+    </tr>
+    <tr style="border-bottom:1px solid #e0dcd6;">
+      <td style="padding:8px 0;">信息密度</td>
+      <td style="padding:8px 0;text-align:center;">极低 · 纯意境</td>
+      <td style="padding:8px 0;text-align:center;">中等 · 含描述</td>
+    </tr>
+    <tr>
+      <td style="padding:8px 0;">Hackathon效果</td>
+      <td style="padding:8px 0;text-align:center;color:#4a7c59;"><strong>★★★★★</strong></td>
+      <td style="padding:8px 0;text-align:center;color:#7c6c4a;"><strong>★★★★☆</strong></td>
+    </tr>
+  </table>
+</div>

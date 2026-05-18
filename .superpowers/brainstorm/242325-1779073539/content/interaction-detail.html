@@ -1,0 +1,77 @@
+<h2>设计第三节：交互细节优化</h2>
+<p class="subtitle">基于 UI/UX-Pro-Max 原则的交互体验</p>
+
+<div class="mockup">
+  <div class="mockup-header">Preview: 节气轮播交互流程</div>
+  <div class="mockup-body">
+    <div style="position:relative;width:100%;height:280px;background:#f8f6f2;border-radius:8px;overflow:hidden;">
+
+      <!-- 页面1: 节气展示 -->
+      <div style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:20px;">
+        <div style="font-size:11px;letter-spacing:12px;color:#8a8a86;margin-bottom:16px;">立 春</div>
+        <div style="font-size:28px;font-weight:400;letter-spacing:6px;margin-bottom:14px;">春风如贵客</div>
+        <div style="font-size:12px;color:#7a7a76;font-style:italic;letter-spacing:2px;">一夜东风起，万物竞生辉</div>
+
+        <!-- 描述卡片 -->
+        <div style="position:absolute;bottom:50px;left:50%;transform:translateX(-50%);background:rgba(255,255,255,0.95);padding:12px 20px;border-radius:4px;box-shadow:0 2px 12px rgba(0,0,0,0.06);max-width:280px;">
+          <div style="font-size:11px;line-height:1.7;color:#5a5a5a;">立春标志着春季开始，万物复苏，生机勃发</div>
+        </div>
+      </div>
+
+      <!-- 切换箭头 -->
+      <div style="position:absolute;left:12px;top:50%;transform:translateY(-50%);width:32px;height:32px;display:flex;align-items:center;justify-content:center;color:#8a8a86;font-size:18px;border:1px solid #d5d0ca;border-radius:50%;cursor:pointer;transition:all 0.2s;">‹</div>
+      <div style="position:absolute;right:12px;top:50%;transform:translateY(-50%);width:32px;height:32px;display:flex;align-items:center;justify-content:center;color:#8a8a86;font-size:18px;border:1px solid #d5d0ca;border-radius:50%;cursor:pointer;transition:all 0.2s;">›</div>
+
+      <!-- 底部导航 -->
+      <div style="position:absolute;bottom:16px;left:50%;transform:translateX(-50%);display:flex;gap:8px;align-items:center;">
+        <div style="width:6px;height:6px;border-radius:50%;background:#2a2a2a;"></div>
+        <div style="width:6px;height:6px;border-radius:50%;background:#d0ccc6;"></div>
+        <div style="width:6px;height:6px;border-radius:50%;background:#d0ccc6;"></div>
+        <div style="width:6px;height:6px;border-radius:50%;background:#d0ccc6;"></div>
+        <div style="width:6px;height:6px;border-radius:50%;background:#d0ccc6;"></div>
+      </div>
+
+      <!-- 键盘提示 -->
+      <div style="position:absolute;top:12px;right:12px;font-size:10px;color:#b0aca8;letter-spacing:1px;">← → 键盘切换</div>
+    </div>
+  </div>
+</div>
+
+<div style="margin-top:20px;">
+  <h3>交互设计要点 (UI/UX-Pro-Max)</h3>
+
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:12px;">
+    <div style="padding:16px;background:#f5f3ef;border-radius:8px;">
+      <h4 style="margin-bottom:8px;font-size:13px;">触摸优化</h4>
+      <ul style="margin:0;padding-left:16px;font-size:12px;color:#6a6a6a;line-height:1.8;">
+        <li>切换按钮 ≥44px 可点击区域</li>
+        <li>按钮间距 ≥8px，防止误触</li>
+        <li>hover/active 状态区分明显</li>
+      </ul>
+    </div>
+    <div style="padding:16px;background:#f5f3ef;border-radius:8px;">
+      <h4 style="margin-bottom:8px;font-size:13px;">键盘支持</h4>
+      <ul style="margin:0;padding-left:16px;font-size:12px;color:#6a6a6a;line-height:1.8;">
+        <li>← → 箭头键切换节气</li>
+        <li>Escape 返回第一页</li>
+        <li>Focus 状态可见</li>
+      </ul>
+    </div>
+    <div style="padding:16px;background:#f5f3ef;border-radius:8px;">
+      <h4 style="margin-bottom:8px;font-size:13px;">动画时长</h4>
+      <ul style="margin:0;padding-left:16px;font-size:12px;color:#6a6a6a;line-height:1.8;">
+        <li>页面切换 ≤400ms</li>
+        <li>缓入缓出曲线自然</li>
+        <li>支持 prefers-reduced-motion</li>
+      </ul>
+    </div>
+    <div style="padding:16px;background:#f5f3ef;border-radius:8px;">
+      <h4 style="margin-bottom:8px;font-size:13px;">响应式</h4>
+      <ul style="margin:0;padding-left:16px;font-size:12px;color:#6a6a6a;line-height:1.8;">
+        <li>移动端全屏沉浸</li>
+        <li>触摸滑动切换</li>
+        <li>横屏友好适配</li>
+      </ul>
+    </div>
+  </div>
+</div>

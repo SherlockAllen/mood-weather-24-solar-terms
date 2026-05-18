@@ -1,0 +1,90 @@
+<h2>设计第二节：水墨动画细节</h2>
+<p class="subtitle">浓淡干湿的动态表达</p>
+
+<div class="mockup">
+  <div class="mockup-header">Preview: 水墨动画元素</div>
+  <div class="mockup-body">
+    <div style="position:relative;width:100%;height:300px;background:#f5f5f0;border-radius:8px;overflow:hidden;font-family:'Songti SC','SimSun',serif;">
+
+      <!-- 层1: 远山 -->
+      <svg style="position:absolute;bottom:0;left:0;width:100%;height:100%;" viewBox="0 0 500 300" preserveAspectRatio="none">
+        <defs>
+          <filter id="mistFilter">
+            <feGaussianBlur stdDeviation="4"/>
+          </filter>
+          <linearGradient id="mountainGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+            <stop offset="0%" style="stop-color:#c0bdb5"/>
+            <stop offset="100%" style="stop-color:#a8a5a0"/>
+          </linearGradient>
+        </defs>
+        <!-- 远山 -->
+        <path d="M0,200 Q80,120 160,170 Q240,80 340,140 Q420,60 500,100 L500,300 L0,300 Z" fill="#d5d2cc" opacity="0.5"/>
+        <!-- 近山 -->
+        <path d="M0,250 Q100,180 200,220 Q300,150 400,190 Q460,140 500,160 L500,300 L0,300 Z" fill="url(#mountainGrad)"/>
+        <!-- 墨迹晕染动画 -->
+        <ellipse cx="150" cy="80" rx="100" ry="60" fill="#2a2a2a" opacity="0.08" filter="url(#mistFilter)">
+          <animate attributeName="cx" dur="10s" repeatCount="indefinite" values="150;180;150" keyTimes="0;0.5;1"/>
+          <animate attributeName="opacity" dur="10s" repeatCount="indefinite" values="0.08;0.12;0.08"/>
+        </ellipse>
+        <ellipse cx="380" cy="120" rx="80" ry="50" fill="#3a3a3a" opacity="0.06" filter="url(#mistFilter)">
+          <animate attributeName="cx" dur="14s" repeatCount="indefinite" values="380;350;380"/>
+        </ellipse>
+      </svg>
+
+      <!-- 层2: 飘落墨点 -->
+      <div style="position:absolute;top:0;left:0;width:100%;height:100%;">
+        <circle cx="120" cy="0" r="2" fill="#2a2a2a" opacity="0.3">
+          <animate attributeName="cy" dur="12s" repeatCount="indefinite" values="-20;320" repeatCount="indefinite"/>
+          <animate attributeName="opacity" dur="12s" repeatCount="indefinite" values="0;0.3;0.3;0" keyTimes="0;0.1;0.9;1"/>
+        </circle>
+        <circle cx="280" cy="0" r="1.5" fill="#3a3a3a" opacity="0.25">
+          <animate attributeName="cy" dur="15s" repeatCount="indefinite" values="-20;320"/>
+          <animate attributeName="opacity" dur="15s" repeatCount="indefinite" values="0;0.25;0.25;0" keyTimes="0;0.1;0.9;1"/>
+        </circle>
+        <circle cx="400" cy="0" r="2.5" fill="#1a1a1a" opacity="0.2">
+          <animate attributeName="cy" dur="18s" repeatCount="indefinite" values="-20;320"/>
+          <animate attributeName="opacity" dur="18s" repeatCount="indefinite" values="0;0.2;0.2;0" keyTimes="0;0.1;0.9;1"/>
+        </circle>
+      </div>
+
+      <!-- 层3: 飘雾 -->
+      <svg style="position:absolute;bottom:60px;left:0;width:100%;height:80px;" viewBox="0 0 500 80" preserveAspectRatio="none">
+        <path d="M0,40 Q125,20 250,40 T500,40 L500,80 L0,80 Z" fill="#e8e5df" opacity="0.6">
+          <animate attributeName="d" dur="8s" repeatCount="indefinite"
+            values="M0,40 Q125,20 250,40 T500,40 L500,80 L0,80 Z;
+                    M0,45 Q125,25 250,45 T500,45 L500,80 L0,80 Z;
+                    M0,40 Q125,20 250,40 T500,40 L500,80 L0,80 Z"/>
+        </path>
+      </svg>
+
+      <!-- 层4: 中心文字 -->
+      <div style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;color:#1a1a1a;">
+        <div style="font-size:11px;letter-spacing:14px;margin-bottom:16px;">立 春</div>
+        <div style="font-size:32px;letter-spacing:8px;">春风如贵客</div>
+        <div style="font-size:13px;color:#5a5a5a;font-style:italic;letter-spacing:4px;margin-top:16px;">一夜东风起，万物竞生辉</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div style="margin-top:20px;">
+  <h3>水墨动效分层</h3>
+  <table style="width:100%;border-collapse:collapse;color:#5a5550;">
+    <tr style="border-bottom:1px solid #e0ddd5;">
+      <td style="padding:8px 0;"><strong>远山剪影</strong></td>
+      <td style="padding:8px 0;">SVG路径，静态+半透明层叠，营造纵深感</td>
+    </tr>
+    <tr style="border-bottom:1px solid #e0ddd5;">
+      <td style="padding:8px 0;"><strong>墨迹晕染</strong></td>
+      <td style="padding:8px 0;">椭圆模糊 + 位置/透明度动画，模拟墨水在纸上晕开</td>
+    </tr>
+    <tr style="border-bottom:1px solid #e0ddd5;">
+      <td style="padding:8px 0;"><strong>飘落墨点</strong></td>
+      <td style="padding:8px 0;">细小圆点缓慢下落，营造"落墨"意境</td>
+    </tr>
+    <tr>
+      <td style="padding:8px 0;"><strong>底部飘雾</strong></td>
+      <td style="padding:8px 0;">曲线路径动画，云雾缓缓流动</td>
+    </tr>
+  </table>
+</div>
