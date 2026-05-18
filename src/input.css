@@ -10,3 +10,284 @@
   --font-kai: 'Kaiti SC', serif;
   --font-serif: 'Noto Serif SC', serif;
 }
+
+/* ============================================
+   Carousel Component Styles
+   ============================================ */
+
+.carousel {
+  position: relative;
+  width: 100vw;
+  height: 100dvh;
+  overflow: hidden;
+  background-color: var(--color-paper, #f8f6f2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* SVG Background */
+.ink-background {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  pointer-events: none;
+}
+
+/* Slides container */
+.slides-container {
+  position: relative;
+  z-index: 10;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Individual slide */
+.slide {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 0 60px;
+  text-align: center;
+}
+
+.slide-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+/* Typography */
+.term-name {
+  font-family: var(--font-song, 'Songti SC', serif);
+  font-size: 12px;
+  letter-spacing: 12px;
+  color: var(--color-ink-light, #8a8a86);
+  font-weight: 400;
+  margin: 0 0 16px 0;
+  text-transform: none;
+}
+
+.term-poem {
+  font-family: var(--font-kai, 'Kaiti SC', serif);
+  font-size: 36px;
+  letter-spacing: 8px;
+  color: var(--color-ink-dark, #2a2a2a);
+  font-weight: 400;
+  margin: 0;
+  line-height: 1.4;
+}
+
+.term-subtitle {
+  font-family: var(--font-serif, 'Noto Serif SC', serif);
+  font-size: 14px;
+  font-style: italic;
+  letter-spacing: 3px;
+  color: var(--color-ink-mid, #6a6a6a);
+  margin: 18px 0 0 0;
+}
+
+/* Description card */
+.desc-card {
+  position: absolute;
+  bottom: 80px;
+  left: 50%;
+  transform: translateX(-50%);
+  max-width: 320px;
+  width: 90%;
+  background: rgba(255, 255, 255, 0.9);
+  padding: 16px 24px;
+  border-radius: 4px;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+  z-index: 11;
+}
+
+.desc-card p {
+  font-family: var(--font-serif, 'Noto Serif SC', serif);
+  font-size: 13px;
+  line-height: 1.8;
+  color: var(--color-ink-mid, #5a5a5a);
+  margin: 0;
+  letter-spacing: 1px;
+}
+
+/* Navigation arrows */
+.nav-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-ink-light, #8a8a86);
+  background: transparent;
+  border: 1px solid var(--color-mountain, #d5d0ca);
+  border-radius: 50%;
+  cursor: pointer;
+  z-index: 20;
+  transition: all 200ms ease;
+  opacity: 0.6;
+}
+
+.nav-arrow:hover {
+  opacity: 1;
+  border-color: var(--color-ink-dark, #2a2a2a);
+  color: var(--color-ink-dark, #2a2a2a);
+}
+
+.nav-arrow:focus-visible {
+  outline: 2px solid var(--color-ink-dark, #2a2a2a);
+  outline-offset: 2px;
+}
+
+.nav-prev {
+  left: 20px;
+}
+
+.nav-next {
+  right: 20px;
+}
+
+/* Dot indicators */
+.dots-container {
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  z-index: 20;
+}
+
+.dot {
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  position: relative;
+}
+
+.dot::after {
+  content: '';
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--color-mountain, #d0ccc6);
+  transition: all 200ms ease;
+  display: block;
+}
+
+.dot:hover::after,
+.dot:focus-visible::after {
+  width: 8px;
+  height: 8px;
+  background: var(--color-ink-mid, #6a6a6a);
+}
+
+.dot.active::after {
+  background: var(--color-ink-dark, #2a2a2a);
+}
+
+.dot:focus-visible {
+  outline: 2px solid var(--color-ink-dark, #2a2a2a);
+  outline-offset: 2px;
+  border-radius: 50%;
+}
+
+/* Keyboard hint */
+.keyboard-hint {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  font-size: 10px;
+  color: var(--color-mountain, #b0aca8);
+  letter-spacing: 1px;
+  z-index: 20;
+  display: flex;
+  gap: 4px;
+  align-items: center;
+  font-family: var(--font-serif, 'Noto Serif SC', serif);
+}
+
+.keyboard-hint span {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 18px;
+  height: 18px;
+  border: 1px solid var(--color-mountain, #d5d0ca);
+  border-radius: 3px;
+  font-size: 10px;
+}
+
+/* Responsive */
+@media (max-width: 767px) {
+  .slide {
+    padding: 0 20px;
+  }
+
+  .term-poem {
+    font-size: 28px;
+    letter-spacing: 6px;
+  }
+
+  .term-subtitle {
+    font-size: 12px;
+    letter-spacing: 2px;
+  }
+
+  .desc-card {
+    bottom: 70px;
+    padding: 12px 16px;
+  }
+
+  .nav-arrow {
+    width: 36px;
+    height: 36px;
+  }
+
+  .nav-prev {
+    left: 12px;
+  }
+
+  .nav-next {
+    right: 12px;
+  }
+
+  .keyboard-hint {
+    display: none;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1023px) {
+  .term-poem {
+    font-size: 32px;
+    letter-spacing: 7px;
+  }
+}
+
+/* Safe area for notched phones */
+@supports (padding: max(0px)) {
+  .carousel {
+    padding-left: max(0px, env(safe-area-inset-left));
+    padding-right: max(0px, env(safe-area-inset-right));
+    padding-bottom: max(0px, env(safe-area-inset-bottom));
+  }
+}

@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="description" content="情绪天气 — 24节气动态壁纸，以传统水墨美学呈现二十四节气的诗意意境">
+  <title>情绪天气 — 24节气</title>
+  <link rel="stylesheet" href="src/main.css">
+  <link rel="stylesheet" href="src/animations.css">
+  <style>
+    /* Critical inline styles for first paint */
+    html, body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      overflow: hidden;
+      background-color: #f8f6f2;
+      font-family: 'Noto Serif SC', 'Songti SC', serif;
+      -webkit-font-smoothing: antialiased;
+    }
+    .sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border: 0;
+    }
+  </style>
+</head>
+<body>
+  <h1 class="sr-only">情绪天气 — 24节气动态壁纸</h1>
+
+  <div
+    id="carousel"
+    class="carousel"
+    role="region"
+    aria-label="24节气轮播"
+  >
+    <!-- Layer 1: SVG Ink-Wash Background -->
+    <svg
+      class="ink-background"
+      viewBox="0 0 400 320"
+      preserveAspectRatio="none"
+      aria-hidden="true"
+    >
+      <defs>
+        <filter id="softMist" x="-20%" y="-20%" width="140%" height="140%">
+          <feGaussianBlur stdDeviation="6" />
+        </filter>
+        <filter id="heavyMist" x="-20%" y="-20%" width="140%" height="140%">
+          <feGaussianBlur stdDeviation="10" />
+        </filter>
+      </defs>
+
+      <!-- Layer 1: Distant mountains -->
+      <path
+        d="M0,240 Q100,160 200,200 Q300,120 400,180 L400,320 L0,320 Z"
+        fill="#e0dcd6"
+        opacity="0.7"
+      />
+      <path
+        d="M0,280 Q120,220 240,260 Q340,200 400,230 L400,320 L0,320 Z"
+        fill="#d5d0ca"
+        opacity="0.9"
+      />
+
+      <!-- Layer 2: Ink blurs breathing -->
+      <ellipse
+        cx="80"
+        cy="100"
+        rx="100"
+        ry="60"
+        fill="#2a2a2a"
+        opacity="0.06"
+        filter="url(#softMist)"
+        class="ink-blur-1"
+      />
+      <ellipse
+        cx="300"
+        cy="80"
+        rx="80"
+        ry="50"
+        fill="#2a2a2a"
+        opacity="0.04"
+        filter="url(#heavyMist)"
+        class="ink-blur-2"
+      />
+
+      <!-- Layer 3: Falling ink dots -->
+      <circle cx="50" cy="0" r="2" fill="#2a2a2a" opacity="0.3" class="ink-dot" />
+      <circle cx="120" cy="0" r="1.5" fill="#2a2a2a" opacity="0.2" class="ink-dot-delayed" />
+      <circle cx="280" cy="0" r="2.5" fill="#2a2a2a" opacity="0.25" class="ink-dot" style="animation-delay: 3s;" />
+      <circle cx="350" cy="0" r="1.8" fill="#2a2a2a" opacity="0.2" class="ink-dot-delayed" style="animation-delay: 7s;" />
+
+      <!-- Layer 4: Bottom mist flow -->
+      <path
+        d="M0,280 Q120,220 240,260 Q340,200 400,230 L400,320 L0,320 Z"
+        fill="#e8e4de"
+        opacity="0.5"
+        filter="url(#softMist)"
+        class="mist-layer"
+      />
+    </svg>
+
+    <!-- Layer 3: Slide content -->
+    <div class="slides-container"></div>
+
+    <!-- Layer 5: Navigation arrows -->
+    <button
+      class="nav-arrow nav-prev"
+      aria-label="上一个节气"
+      type="button"
+    >
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <polyline points="15 18 9 12 15 6"></polyline>
+      </svg>
+    </button>
+    <button
+      class="nav-arrow nav-next"
+      aria-label="下一个节气"
+      type="button"
+    >
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <polyline points="9 18 15 12 9 6"></polyline>
+      </svg>
+    </button>
+
+    <!-- Layer 6: Dot indicators -->
+    <div
+      class="dots-container"
+      role="tablist"
+      aria-label="节气导航"
+    ></div>
+
+    <!-- Keyboard hint -->
+    <div class="keyboard-hint" aria-hidden="true">
+      <span>&larr;</span><span>&rarr;</span> 键盘切换
+    </div>
+  </div>
+
+  <script type="module" src="src/carousel.js"></script>
+  <script type="module" src="src/interactions.js"></script>
+  <script type="module">
+    import { Carousel } from './src/carousel.js';
+    import { initInteractions } from './src/interactions.js';
+
+    const carousel = new Carousel('carousel', {
+      transitionDuration: 350,
+      onChange: (term, index) => {
+        // Optional: update document title or analytics
+        document.title = `情绪天气 — ${term.name}`;
+      }
+    });
+
+    initInteractions(carousel, document.getElementById('carousel'));
+  </script>
+</body>
+</html>
