@@ -1,0 +1,12 @@
+{
+  "name": "mood-weather-24-solar-terms",
+  "version": "1.0.0",
+  "description": "24 Solar Terms dynamic wallpaper with ink-wash aesthetics",
+  "scripts": {
+    "build:css": "tailwindcss -i ./src/input.css -o ./src/main.css --minify",
+    "watch:css": "tailwindcss -i ./src/input.css -o ./src/main.css --watch"
+  },
+  "devDependencies": {
+    "tailwindcss": "^4.0.0"
+  }
+}
