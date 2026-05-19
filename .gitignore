@@ -9,6 +9,7 @@ styles/main.css
 test-results/
 tests/reports/
 test-screenshots/
+tests/
 
 # Temporary / cache files
 .playwright-mcp/
@@ -16,6 +17,7 @@ test-screenshots/
 .omc/
 .superpowers/
 progress.md
+project_history.md
 
 # IDE / Editor
 .vscode/
