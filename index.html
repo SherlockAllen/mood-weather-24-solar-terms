@@ -8,6 +8,10 @@
   <!-- Mood Weather — 24 Solar Terms -->
   <title>Mood Weather — 24 Solar Terms</title>
   <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🌿</text></svg>">
+  <!-- TASK-019: Consistent Chinese font rendering across platforms via Google Fonts + font-display: swap for zero FOIT -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Ma+Shan+Zheng&family=Noto+Serif+SC:wght@300;400&text=冬分处夏大寒小惊明春暑水清满白秋种立至芒蛰谷降雨雪霜露&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles/main.css">
   <link rel="stylesheet" href="styles/animations.css">
   <style>
@@ -48,7 +52,7 @@
     <svg
       class="ink-background"
       viewBox="0 0 400 320"
-      preserveAspectRatio="none"
+      preserveAspectRatio="xMidYMid slice"
       aria-hidden="true"
     >
       <defs>

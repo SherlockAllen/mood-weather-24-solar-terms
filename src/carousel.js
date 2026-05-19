@@ -97,6 +97,12 @@ export class Carousel {
     `
       )
       .join('');
+
+    // Scroll active dot into view (TASK-015)
+    const activeDot = this.dotsContainer.querySelector('.dot.active');
+    if (activeDot && activeDot.scrollIntoView) {
+      activeDot.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+    }
   }
 
   /**

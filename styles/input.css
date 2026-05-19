@@ -6,8 +6,9 @@
   --color-ink-mid: #6a6a6a;
   --color-ink-light: #8a8a86;
   --color-mountain: #d5d0ca;
-  --font-song: 'Songti SC', 'SimSun', serif;
-  --font-kai: 'Kaiti SC', serif;
+  /* TASK-019: Web fonts loaded from Google Fonts for cross-platform consistency */
+  --font-song: 'Noto Serif SC', 'Songti SC', 'SimSun', serif;
+  --font-kai: 'Ma Shan Zheng', 'Kaiti SC', serif;
   --font-serif: 'Noto Serif SC', serif;
 }
 
@@ -72,8 +73,8 @@
 /* Typography */
 .term-name {
   font-family: var(--font-song, 'Songti SC', serif);
-  font-size: 18px;
-  letter-spacing: 12px;
+  font-size: clamp(16px, 1vw + 12px, 24px);
+  letter-spacing: clamp(8px, 0.6vw + 6px, 16px);
   color: var(--color-ink-light, #8a8a86);
   font-weight: 400;
   margin: 0 0 16px 0;
@@ -82,8 +83,8 @@
 
 .term-name-en {
   font-family: var(--font-serif, 'Noto Serif SC', serif);
-  font-size: 16px;
-  letter-spacing: 2px;
+  font-size: clamp(14px, 0.6vw + 12px, 20px);
+  letter-spacing: clamp(1px, 0.15vw + 1px, 4px);
   color: var(--color-ink-light, #8a8a86);
   font-weight: 300;
   margin: 0 0 12px 0;
@@ -92,8 +93,8 @@
 
 .term-poem {
   font-family: var(--font-kai, 'Kaiti SC', serif);
-  font-size: 40px;
-  letter-spacing: 8px;
+  font-size: clamp(28px, 2vw + 20px, 48px);
+  letter-spacing: clamp(4px, 0.5vw + 3px, 10px);
   color: var(--color-ink-dark, #2a2a2a);
   font-weight: 400;
   margin: 0;
@@ -102,9 +103,9 @@
 
 .term-subtitle {
   font-family: var(--font-serif, 'Noto Serif SC', serif);
-  font-size: 18px;
+  font-size: clamp(15px, 0.8vw + 11px, 22px);
   font-style: italic;
-  letter-spacing: 3px;
+  letter-spacing: clamp(2px, 0.2vw + 1.5px, 4px);
   color: var(--color-ink-mid, #6a6a6a);
   margin: 18px 0 0 0;
 }
@@ -126,11 +127,11 @@
 
 .desc-card p {
   font-family: var(--font-serif, 'Noto Serif SC', serif);
-  font-size: 17px;
+  font-size: clamp(15px, 0.6vw + 13px, 20px);
   line-height: 1.8;
   color: var(--color-ink-mid, #5a5a5a);
   margin: 0;
-  letter-spacing: 1px;
+  letter-spacing: clamp(0.5px, 0.08vw + 0.5px, 2px);
 }
 
 /* Navigation arrows */
@@ -253,17 +254,26 @@
 /* Responsive */
 @media (max-width: 767px) {
   .slide {
-    padding: 0 20px;
+    justify-content: flex-start;
+    padding: clamp(40px, 6vh, 80px) 20px 0;
   }
 
+  .slide-content {
+    max-height: calc(100dvh - 240px);
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+
+  .slide-content::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* TASK-017: Reduce poem font-size on mobile — limits line wraps to ≤3 */
   .term-poem {
-    font-size: 32px;
-    letter-spacing: 6px;
-  }
-
-  .term-subtitle {
-    font-size: 16px;
-    letter-spacing: 2px;
+    font-size: clamp(22px, 2vw + 14px, 36px);
+    letter-spacing: clamp(1px, 0.3vw + 0.5px, 4px);
   }
 
   .desc-card {
@@ -271,9 +281,12 @@
     padding: 12px 16px;
   }
 
+  /* TASK-018: Increase mobile nav-arrow visibility */
   .nav-arrow {
     width: 36px;
     height: 36px;
+    opacity: 0.8;
+    background: rgba(213, 208, 202, 0.18);
   }
 
   .nav-prev {
@@ -287,12 +300,80 @@
   .keyboard-hint {
     display: none;
   }
+
+  /* TASK-015: Mobile scrollable dots + gradient fade mask */
+  .dots-container {
+    left: 0;
+    transform: none;
+    width: 100%;
+    overflow-x: auto;
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    padding: 0 16px;
+    gap: 6px;
+    -webkit-mask-image: linear-gradient(
+      to right,
+      transparent 0px,
+      black 16px,
+      black calc(100% - 16px),
+      transparent 100%
+    );
+    mask-image: linear-gradient(
+      to right,
+      transparent 0px,
+      black 16px,
+      black calc(100% - 16px),
+      transparent 100%
+    );
+  }
+
+  .dots-container::-webkit-scrollbar {
+    display: none;
+  }
+
+  .dot::after {
+    width: 5px;
+    height: 5px;
+  }
+
+  .dot:hover::after,
+  .dot:focus-visible::after {
+    width: 7px;
+    height: 7px;
+  }
 }
 
 @media (min-width: 768px) and (max-width: 1023px) {
-  .term-poem {
-    font-size: 36px;
-    letter-spacing: 7px;
+  /* Font sizes handled fluidly by clamp() — no override needed */
+}
+
+@media (min-width: 1024px) {
+  .nav-arrow {
+    width: 52px;
+    height: 52px;
+  }
+
+  .nav-prev {
+    left: 32px;
+  }
+
+  .nav-next {
+    right: 32px;
+  }
+
+  .desc-card {
+    max-width: clamp(300px, 80vw, 480px);
+  }
+
+  .keyboard-hint {
+    font-size: 12px;
+  }
+
+  .term-name-en {
+    color: var(--color-ink-mid, #6a6a6a);
+    font-weight: 400;
   }
 }
 

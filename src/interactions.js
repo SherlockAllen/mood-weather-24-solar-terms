@@ -81,10 +81,12 @@ export function initInteractions(carousel, container) {
     });
   }
 
-  // --- Touch / Swipe ---
+  // --- Touch / Swipe with visual feedback ---
   let touchStartX = 0;
+  let touchStartY = 0;
   let touchStartTime = 0;
   let isTouching = false;
+  let isHorizontalSwipe = false;
 
   // Dynamic threshold: higher DPR screens need proportionally larger swipe distance
   const getSwipeThreshold = () => Math.round(50 / window.devicePixelRatio);
@@ -95,34 +97,102 @@ export function initInteractions(carousel, container) {
     'touchstart',
     (e) => {
       if (e.touches.length !== 1) return;
+      if (carousel.isAnimating) return;
       isTouching = true;
+      isHorizontalSwipe = false;
       touchStartX = e.touches[0].clientX;
+      touchStartY = e.touches[0].clientY;
       touchStartTime = Date.now();
     },
     { passive: true }
   );
 
-  // touchmove listener removed — CSS touch-action: pan-y handles scroll behavior natively.
-  // The browser now decides scroll vs swipe without waiting for JS, eliminating scroll jank.
+  container.addEventListener(
+    'touchmove',
+    (e) => {
+      if (!isTouching || e.touches.length !== 1) return;
+
+      const currentX = e.touches[0].clientX;
+      const currentY = e.touches[0].clientY;
+      const dx = currentX - touchStartX;
+      const dy = currentY - touchStartY;
+
+      // Direction detection — determine horizontal vs vertical
+      if (!isHorizontalSwipe) {
+        if (Math.abs(dy) > Math.abs(dx) + 5 && Math.abs(dy) > 8) {
+          // Vertical scroll — let browser handle natively via touch-action: pan-y
+          isTouching = false;
+          return;
+        }
+        if (Math.abs(dx) > Math.abs(dy) + 5 && Math.abs(dx) > 8) {
+          isHorizontalSwipe = true;
+          // Cancel any ongoing animation on the current slide
+          const slide = container.querySelector('.slide');
+          if (slide) {
+            slide.style.transition = 'none';
+          }
+        } else {
+          return;
+        }
+      }
+
+      const slide = container.querySelector('.slide');
+      if (slide) {
+        slide.style.transform = `translateX(${dx}px)`;
+      }
+    },
+    { passive: true }
+  );
 
   container.addEventListener(
     'touchend',
     (e) => {
       if (!isTouching) return;
       isTouching = false;
+
       const touchEndX = e.changedTouches[0].clientX;
       const dx = touchEndX - touchStartX;
       const elapsed = Date.now() - touchStartTime;
 
-      // Composite judgment: distance + velocity
-      const threshold = getSwipeThreshold();
-      if (Math.abs(dx) >= threshold && elapsed > 0) {
-        const velocity = Math.abs(dx) / elapsed;
-        if (velocity >= MIN_SWIPE_VELOCITY) {
-          if (dx > 0) {
-            carousel.prev();
-          } else {
-            carousel.next();
+      const slide = container.querySelector('.slide');
+      if (!slide) return;
+
+      if (isHorizontalSwipe) {
+        const threshold = getSwipeThreshold();
+
+        if (Math.abs(dx) >= threshold && elapsed > 0) {
+          const velocity = Math.abs(dx) / elapsed;
+          if (velocity >= MIN_SWIPE_VELOCITY) {
+            // Reset inline styles and trigger switch via existing carousel animation
+            slide.style.transition = '';
+            slide.style.transform = '';
+            if (dx > 0) {
+              carousel.prev();
+            } else {
+              carousel.next();
+            }
+            return;
+          }
+        }
+
+        slide.style.transition = 'transform 250ms cubic-bezier(0.4, 0, 0.2, 1)';
+        slide.style.transform = 'translateX(0)';
+        const onBounceEnd = () => {
+          slide.style.transition = '';
+          slide.style.transform = '';
+        };
+        slide.addEventListener('transitionend', onBounceEnd, { once: true });
+      } else {
+        // Quick flick without visible drag: use existing non-visual swipe logic
+        const threshold = getSwipeThreshold();
+        if (Math.abs(dx) >= threshold && elapsed > 0) {
+          const velocity = Math.abs(dx) / elapsed;
+          if (velocity >= MIN_SWIPE_VELOCITY) {
+            if (dx > 0) {
+              carousel.prev();
+            } else {
+              carousel.next();
+            }
           }
         }
       }
