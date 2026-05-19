@@ -175,12 +175,12 @@ export class Carousel {
 
     // Effect mapping
     const effectMap = {
-      rain: (frag, varnt) => effects.rain(frag, varnt || 'shower'),
-      mist: (frag, varnt) => effects.mist(frag, varnt || 'morning'),
-      sway: (frag, varnt) => effects.grass(frag, varnt || 'grass'),
-      dew: (frag, varnt) => effects.dew(frag, varnt || 'morningDew'),
-      snow: (frag, varnt) => effects.snow(frag, varnt || 'snowfall'),
-      frost: (frag, varnt) => effects.frost(frag, varnt || 'window'),
+      rain: (frag, variant) => effects.rain(frag, variant || 'shower'),
+      mist: (frag, variant) => effects.mist(frag, variant || 'morning'),
+      sway: (frag, variant) => effects.grass(frag, variant || 'grass'),
+      dew: (frag, variant) => effects.dew(frag, variant || 'morningDew'),
+      snow: (frag, variant) => effects.snow(frag, variant || 'snowfall'),
+      frost: (frag, variant) => effects.frost(frag, variant || 'window'),
     };
 
     if (effect !== 'none' && effectMap[effect]) {
