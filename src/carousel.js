@@ -175,16 +175,16 @@ export class Carousel {
 
     // Effect mapping
     const effectMap = {
-      rain: () => effects.rain(fragment, variant || 'shower'),
-      mist: () => effects.mist(fragment, variant || 'morning'),
-      sway: () => effects.grass(fragment, variant || 'grass'),
-      dew: () => effects.dew(fragment, variant || 'morningDew'),
-      snow: () => effects.snow(fragment, variant || 'snowfall'),
-      frost: () => effects.frost(fragment, variant || 'window'),
+      rain: (frag, varnt) => effects.rain(frag, varnt || 'shower'),
+      mist: (frag, varnt) => effects.mist(frag, varnt || 'morning'),
+      sway: (frag, varnt) => effects.grass(frag, varnt || 'grass'),
+      dew: (frag, varnt) => effects.dew(frag, varnt || 'morningDew'),
+      snow: (frag, varnt) => effects.snow(frag, varnt || 'snowfall'),
+      frost: (frag, varnt) => effects.frost(frag, varnt || 'window'),
     };
 
     if (effect !== 'none' && effectMap[effect]) {
-      effectMap[effect]();
+      effectMap[effect](fragment, variant);
     }
 
     this.seasonalEffects.appendChild(fragment);

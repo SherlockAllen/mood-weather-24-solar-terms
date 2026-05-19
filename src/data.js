@@ -69,7 +69,7 @@ export const solarTerms = [
     id: 5,
     name: '清明',
     nameEn: 'Pure Brightness',
-    poem: 'During Qingming, the rain fallsincessantly',
+    poem: 'During Qingming, the rain falls incessantly',
     subtitle:
       'Travelers on the road feel their souls about to break; they ask where a tavern might be found',
     description:
