@@ -1,5 +1,37 @@
+# Dependencies
 node_modules/
 package-lock.json
+
+# Build outputs
+styles/main.css
+
+# Test outputs
+test-results/
+tests/reports/
+test-screenshots/
+
+# Temporary / cache files
+.playwright-mcp/
+.sisyphus/
 .omc/
 .superpowers/
 progress.md
+
+# IDE / Editor
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+npm-debug.log*
+
+# Backup files
+.backup/
+*.bak

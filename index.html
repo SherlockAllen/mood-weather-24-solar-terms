@@ -1,12 +1,15 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-  <meta name="description" content="情绪天气 — 24节气动态壁纸，以传统水墨美学呈现二十四节气的诗意意境">
-  <title>情绪天气 — 24节气</title>
-  <link rel="stylesheet" href="src/main.css">
-  <link rel="stylesheet" href="src/animations.css">
+  <!-- Mood Weather — 24 Solar Terms Dynamic Wallpaper, presenting the poetic mood of the 24 solar terms in traditional ink-wash aesthetics -->
+  <meta name="description" content="Mood Weather — 24 Solar Terms Dynamic Wallpaper, presenting the poetic mood of the 24 solar terms in traditional ink-wash aesthetics">
+  <!-- Mood Weather — 24 Solar Terms -->
+  <title>Mood Weather — 24 Solar Terms</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🌿</text></svg>">
+  <link rel="stylesheet" href="styles/main.css">
+  <link rel="stylesheet" href="styles/animations.css">
   <style>
     /* Critical inline styles for first paint */
     html, body {
@@ -32,15 +35,16 @@
   </style>
 </head>
 <body>
-  <h1 class="sr-only">情绪天气 — 24节气动态壁纸</h1>
+  <!-- Mood Weather — 24 Solar Terms Dynamic Wallpaper -->
+  <h1 class="sr-only">Mood Weather — 24 Solar Terms Dynamic Wallpaper</h1>
 
   <div
     id="carousel"
-    class="carousel"
+    class="carousel season-spring"
     role="region"
-    aria-label="24节气轮播"
+    aria-label="24 Solar Terms Carousel"
   >
-    <!-- Layer 1: SVG Ink-Wash Background -->
+    <!-- Layer 1: SVG Ink-Wash Background (English: Traditional Chinese ink-wash painting style background) -->
     <svg
       class="ink-background"
       viewBox="0 0 400 320"
@@ -56,20 +60,26 @@
         </filter>
       </defs>
 
-      <!-- Layer 1: Distant mountains -->
+      <!-- Layer 0: Sky layer (dynamic clouds/stars/aurora) — English: Dynamic sky with clouds, stars, and aurora effects -->
+      <g id="sky-layer" aria-hidden="true"></g>
+
+      <!-- Layer 1: Distant mountains — English: Background mountain silhouettes -->
       <path
+        id="mountain-back"
         d="M0,240 Q100,160 200,200 Q300,120 400,180 L400,320 L0,320 Z"
         fill="#e0dcd6"
         opacity="0.7"
       />
       <path
+        id="mountain-front"
         d="M0,280 Q120,220 240,260 Q340,200 400,230 L400,320 L0,320 Z"
         fill="#d5d0ca"
         opacity="0.9"
       />
 
-      <!-- Layer 2: Ink blurs breathing -->
+      <!-- Layer 2: Ink blurs breathing — English: Soft ink wash blobs with breathing animation -->
       <ellipse
+        id="ink-blur-1"
         cx="80"
         cy="100"
         rx="100"
@@ -80,6 +90,7 @@
         class="ink-blur-1"
       />
       <ellipse
+        id="ink-blur-2"
         cx="300"
         cy="80"
         rx="80"
@@ -90,38 +101,44 @@
         class="ink-blur-2"
       />
 
-      <!-- Layer 3: Falling ink dots -->
+      <!-- Layer 3: Falling ink dots — English: Animated falling ink droplets -->
       <circle cx="50" cy="0" r="2" fill="#2a2a2a" opacity="0.3" class="ink-dot" />
       <circle cx="120" cy="0" r="1.5" fill="#2a2a2a" opacity="0.2" class="ink-dot-delayed" />
       <circle cx="280" cy="0" r="2.5" fill="#2a2a2a" opacity="0.25" class="ink-dot" style="animation-delay: 3s;" />
       <circle cx="350" cy="0" r="1.8" fill="#2a2a2a" opacity="0.2" class="ink-dot-delayed" style="animation-delay: 7s;" />
 
-      <!-- Layer 4: Bottom mist flow -->
+      <!-- Layer 4: Bottom mist flow — English: Low-lying mist flowing at the bottom -->
       <path
+        id="mist-flow"
         d="M0,280 Q120,220 240,260 Q340,200 400,230 L400,320 L0,320 Z"
         fill="#e8e4de"
         opacity="0.5"
         filter="url(#softMist)"
         class="mist-layer"
       />
+
+      <!-- Layer 5: Seasonal effects (injected by JS) — English: Season-specific weather effects like rain, snow, dew -->
+      <g id="seasonal-effects" aria-hidden="true"></g>
     </svg>
 
-    <!-- Layer 3: Slide content -->
+    <!-- Layer 3: Slide content — English: Main text content for each solar term -->
     <div class="slides-container"></div>
 
-    <!-- Layer 5: Navigation arrows -->
+    <!-- Layer 5: Navigation arrows — English: Previous/Next navigation buttons -->
+    <!-- Previous: English: Previous Solar Term -->
     <button
       class="nav-arrow nav-prev"
-      aria-label="上一个节气"
+      aria-label="Previous Solar Term"
       type="button"
     >
       <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
         <polyline points="15 18 9 12 15 6"></polyline>
       </svg>
     </button>
+    <!-- Next: English: Next Solar Term -->
     <button
       class="nav-arrow nav-next"
-      aria-label="下一个节气"
+      aria-label="Next Solar Term"
       type="button"
     >
       <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
@@ -129,16 +146,16 @@
       </svg>
     </button>
 
-    <!-- Layer 6: Dot indicators -->
+    <!-- Layer 6: Dot indicators — English: Pagination dots for each solar term -->
     <div
       class="dots-container"
       role="tablist"
-      aria-label="节气导航"
+      aria-label="Solar Term Navigation"
     ></div>
 
-    <!-- Keyboard hint -->
+    <!-- Keyboard hint — English: Hint showing keyboard arrow keys for navigation -->
     <div class="keyboard-hint" aria-hidden="true">
-      <span>&larr;</span><span>&rarr;</span> 键盘切换
+      <span>&larr;</span><span>&rarr;</span> to navigate
     </div>
   </div>
 
@@ -152,11 +169,15 @@
       transitionDuration: 350,
       onChange: (term, index) => {
         // Optional: update document title or analytics
-        document.title = `情绪天气 — ${term.name}`;
+        // English: Updates the browser tab title to "Mood Weather — [Solar Term Name]"
+        document.title = `Mood Weather — ${term.name}`;
       }
     });
 
     initInteractions(carousel, document.getElementById('carousel'));
+
+    // Expose to global scope for development debugging
+    window.carousel = carousel;
   </script>
 </body>
 </html>

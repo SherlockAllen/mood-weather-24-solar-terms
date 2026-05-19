@@ -1,13 +1,28 @@
 {
+  "type": "module",
   "name": "mood-weather-24-solar-terms",
   "version": "1.0.0",
   "description": "24 Solar Terms dynamic wallpaper with ink-wash aesthetics",
   "scripts": {
-    "build:css": "npx tailwindcss -i ./src/input.css -o ./src/main.css --minify",
-    "watch:css": "npx tailwindcss -i ./src/input.css -o ./src/main.css --watch"
+    "build:css": "npx tailwindcss -i ./styles/input.css -o ./styles/main.css --minify",
+    "watch:css": "npx tailwindcss -i ./styles/input.css -o ./styles/main.css --watch",
+    "test": "npx playwright test --config=tests/playwright.config.js",
+    "test:ui": "npx playwright test --config=tests/playwright.config.js --ui",
+    "test:report": "npx playwright show-report tests/reports/html",
+    "lint": "eslint src/ tests/ *.js",
+    "lint:fix": "eslint src/ tests/ *.js --fix",
+    "format": "prettier --write \"src/**/*.js\" \"tests/**/*.js\" \"*.js\"",
+    "format:check": "prettier --check \"src/**/*.js\" \"tests/**/*.js\" \"*.js\""
   },
   "devDependencies": {
+    "@eslint/js": "^10.0.1",
+    "@playwright/test": "^1.60.0",
     "@tailwindcss/cli": "^4.3.0",
+    "eslint": "^9.39.4",
+    "eslint-config-prettier": "^10.1.8",
+    "globals": "^17.6.0",
+    "playwright": "^1.60.0",
+    "prettier": "^3.8.3",
     "tailwindcss": "^4.0.0"
   }
 }

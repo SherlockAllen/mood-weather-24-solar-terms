@@ -24,6 +24,9 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  /* Allow vertical scroll, capture horizontal swipe for carousel */
+  touch-action: pan-y;
+  -webkit-overflow-scrolling: touch;
 }
 
 /* SVG Background */
@@ -69,7 +72,7 @@
 /* Typography */
 .term-name {
   font-family: var(--font-song, 'Songti SC', serif);
-  font-size: 12px;
+  font-size: 18px;
   letter-spacing: 12px;
   color: var(--color-ink-light, #8a8a86);
   font-weight: 400;
@@ -77,9 +80,19 @@
   text-transform: none;
 }
 
+.term-name-en {
+  font-family: var(--font-serif, 'Noto Serif SC', serif);
+  font-size: 16px;
+  letter-spacing: 2px;
+  color: var(--color-ink-light, #8a8a86);
+  font-weight: 300;
+  margin: 0 0 12px 0;
+  text-transform: lowercase;
+}
+
 .term-poem {
   font-family: var(--font-kai, 'Kaiti SC', serif);
-  font-size: 36px;
+  font-size: 40px;
   letter-spacing: 8px;
   color: var(--color-ink-dark, #2a2a2a);
   font-weight: 400;
@@ -89,7 +102,7 @@
 
 .term-subtitle {
   font-family: var(--font-serif, 'Noto Serif SC', serif);
-  font-size: 14px;
+  font-size: 18px;
   font-style: italic;
   letter-spacing: 3px;
   color: var(--color-ink-mid, #6a6a6a);
@@ -113,7 +126,7 @@
 
 .desc-card p {
   font-family: var(--font-serif, 'Noto Serif SC', serif);
-  font-size: 13px;
+  font-size: 17px;
   line-height: 1.8;
   color: var(--color-ink-mid, #5a5a5a);
   margin: 0;
@@ -244,12 +257,12 @@
   }
 
   .term-poem {
-    font-size: 28px;
+    font-size: 32px;
     letter-spacing: 6px;
   }
 
   .term-subtitle {
-    font-size: 12px;
+    font-size: 16px;
     letter-spacing: 2px;
   }
 
@@ -278,7 +291,7 @@
 
 @media (min-width: 768px) and (max-width: 1023px) {
   .term-poem {
-    font-size: 32px;
+    font-size: 36px;
     letter-spacing: 7px;
   }
 }

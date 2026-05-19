@@ -1,0 +1,7 @@
+node_modules/
+dist/
+styles/main.css
+test-results/
+tests/reports/
+playwright-report/
+package-lock.json
