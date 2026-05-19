@@ -346,7 +346,44 @@
 }
 
 @media (min-width: 768px) and (max-width: 1023px) {
-  /* Font sizes handled fluidly by clamp() — no override needed */
+  .slide {
+    padding: clamp(20px, 4vh, 50px) 40px 0;
+    justify-content: flex-start;
+  }
+
+  .slide-content {
+    max-height: calc(100dvh - 220px);
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+
+  .slide-content::-webkit-scrollbar {
+    display: none;
+  }
+
+  .term-poem {
+    font-size: clamp(22px, 2vw + 16px, 36px);
+    letter-spacing: clamp(1.5px, 0.3vw + 1px, 4px);
+  }
+
+  .desc-card {
+    bottom: 70px;
+    padding: 12px 18px;
+    max-width: 280px;
+  }
+
+  .nav-arrow {
+    width: 40px;
+    height: 40px;
+    opacity: 0.7;
+    background: rgba(213, 208, 202, 0.15);
+  }
+
+  .keyboard-hint {
+    display: none;
+  }
 }
 
 @media (min-width: 1024px) {
